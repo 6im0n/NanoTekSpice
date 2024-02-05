@@ -41,7 +41,7 @@ jobs:
       image: epitechcontent/epitest-docker
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4
 
       - name: Check program compilation
         run: make
@@ -78,7 +78,7 @@ jobs:
       image: epitechcontent/epitest-docker
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4
 
       - name: Run tests
         run: make tests_run
@@ -102,7 +102,7 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
