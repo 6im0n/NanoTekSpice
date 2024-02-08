@@ -9,6 +9,11 @@
 NAME 	= 			nanotekspice
 
 _SRC 	=			Main.cpp						\
+					Acomponent.cpp				\
+					Components/ElementaryComponent.cpp \
+					Components/GatesComponent.cpp	\
+					Components/SpecialComponent.cpp	\
+
 
 SRCDIR 	= 			src/
 
