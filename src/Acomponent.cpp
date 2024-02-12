@@ -21,6 +21,7 @@ nts::Acomponent::Acomponent(size_t size)
     }
 }
 
+
 nts::Acomponent::~Acomponent()
 {
 }

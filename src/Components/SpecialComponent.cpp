@@ -35,17 +35,24 @@ nts::Tristate nts::FalseComponent::compute(std::size_t pin)
     return nts::Tristate::False;
 }
 
-nts::InputComponent::InputComponent()
+nts::InputComponent::InputComponent() : Acomponent(1)
 {
+    this->_state = nts::Tristate::Undefined;
 }
 
 nts::InputComponent::~InputComponent()
 {
 }
 
+void nts::InputComponent::setState(nts::Tristate state)
+{
+    this->_state = state;
+}
+
 nts::Tristate nts::InputComponent::compute(std::size_t pin)
 {
-    (void)pin;
+    if (pin > 0 && pin <= _pins.size())
+        return this->_state;
     return nts::Tristate::Undefined;
 }
 
@@ -59,6 +66,7 @@ nts::OutputComponent::~OutputComponent()
 
 nts::Tristate nts::OutputComponent::compute(std::size_t pin)
 {
-    (void)pin;
+    if (pin > 0 && pin <= _pins.size())
+        return this->_links[pin]->compute(this->_pins[pin]);
     return nts::Tristate::Undefined;
 }
