@@ -16,8 +16,12 @@ _SRC 	=			Main.cpp							\
 					Components/Elementary/Or.cpp 		\
 					Components/Elementary/Xor.cpp		\
 					\
-					Components/GatesComponent.cpp		\
-					Components/SpecialComponent.cpp		\
+					Components/Special/Input.cpp		\
+					Components/Special/Output.cpp	\
+					Components/Special/True.cpp		\
+					Components/Special/False.cpp		\
+					Components/Special/Clock.cpp		\
+					\
 
 
 SRCDIR 	= 			src/

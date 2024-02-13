@@ -8,17 +8,20 @@
 #pragma once
 
 #include "Icomponent.hpp"
+#include <deque>
 
 namespace nts {
     class Acomponent : public IComponent {
     public:
         Acomponent(size_t);
-        ~Acomponent();
+        ~Acomponent() = default;
         void simulate(std::size_t tick) override;
         void setLink(std::size_t pin, nts::IComponent& other, std::size_t otherPin) override;
         nts::Tristate getLink(std::size_t pin) override;
+        void setState(nts::Tristate) override;
     protected:
-        std::vector<IComponent*> _links;
-        std::vector<size_t> _pins;
+        nts::Tristate _state;
+        std::deque<IComponent*> _links;
+        std::deque<size_t> _pins;
     };
 }

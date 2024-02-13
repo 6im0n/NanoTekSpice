@@ -13,7 +13,7 @@ namespace nts {
     class XorComponent : public Acomponent {
     public:
         XorComponent();
-        ~XorComponent();
+        ~XorComponent() = default;
         nts::Tristate compute(std::size_t pin) override;
     };
 }

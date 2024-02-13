@@ -5,13 +5,9 @@
 ** Not
 */
 
-#include "Not.hpp"
+#include "Components/Elementary/Not.hpp"
 
 nts::NotComponent::NotComponent() : Acomponent(2)
-{
-}
-
-nts::NotComponent::~NotComponent()
 {
 }
 
