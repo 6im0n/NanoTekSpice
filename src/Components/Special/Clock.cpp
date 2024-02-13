@@ -15,7 +15,6 @@ nts::ClockComponent::ClockComponent() : Acomponent(1)
 void nts::ClockComponent::setState(nts::Tristate state)
 {
     this->_state = state;
-
 }
 
 nts::Tristate nts::ClockComponent::compute(std::size_t pin)
