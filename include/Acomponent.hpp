@@ -20,6 +20,7 @@ namespace nts {
         nts::Tristate getLink(std::size_t pin) override;
         void setState(nts::Tristate) override;
     protected:
+        size_t _ticks;
         nts::Tristate _state;
         std::deque<IComponent*> _links;
         std::deque<size_t> _pins;
