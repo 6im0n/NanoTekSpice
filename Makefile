@@ -8,7 +8,15 @@
 ## Config
 NAME 	= 			nanotekspice
 
-_SRC 	=			Main.cpp						\
+_SRC 	=			Main.cpp							\
+					Acomponent.cpp						\
+					\
+					Components/Elementary/And.cpp		\
+					Components/Elementary/Not.cpp 		\
+					Components/Elementary/Or.cpp 		\
+					Components/Elementary/Xor.cpp		\
+
+
 
 SRCDIR 	= 			src/
 
