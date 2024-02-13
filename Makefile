@@ -15,13 +15,7 @@ _SRC 	=			Main.cpp							\
 					Components/Elementary/Not.cpp 		\
 					Components/Elementary/Or.cpp 		\
 					Components/Elementary/Xor.cpp		\
-					\
-					Components/Special/Input.cpp		\
-					Components/Special/Output.cpp	\
-					Components/Special/True.cpp		\
-					Components/Special/False.cpp		\
-					Components/Special/Clock.cpp		\
-					\
+
 
 
 SRCDIR 	= 			src/
