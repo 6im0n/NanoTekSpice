@@ -10,17 +10,13 @@
 
 nts::Acomponent::Acomponent(size_t size)
 {
-    this->_links.resize(size + 1);
-    this->_pins.resize(size + 1);
-    for (size_t i = 0; i < size + 1; i++) {
-        this->_links[i] = nullptr;
-        this->_pins[i] = nts::Tristate::Undefined;
-    }
+    this->_links = std::deque<nts::IComponent *>(size + 1, nullptr);
+    this->_pins = std::deque<size_t>(size + 1, 0);
 }
 
-
-nts::Acomponent::~Acomponent()
+void nts::Acomponent::setState(nts::Tristate state)
 {
+    this->_state = state;
 }
 
 void nts::Acomponent::simulate(std::size_t tick)
