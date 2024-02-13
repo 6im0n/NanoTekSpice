@@ -7,9 +7,6 @@
 
 #include "Acomponent.hpp"
 
-nts::Acomponent::Acomponent()
-{
-}
 
 nts::Acomponent::Acomponent(size_t size)
 {
