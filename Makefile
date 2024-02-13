@@ -8,7 +8,10 @@
 ## Config
 NAME 	= 			nanotekspice
 
-_SRC 	=			Main.cpp						\
+_SRC 	=			Main.cpp										\
+					NanoTekSpice.cpp								\
+					Parsing/CircuitFile.cpp							\
+					Utils/Utils.cpp									\
 
 SRCDIR 	= 			src/
 
