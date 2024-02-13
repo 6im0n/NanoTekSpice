@@ -6,6 +6,7 @@
 */
 
 #pragma once
+
 #include "Icomponent.hpp"
 
 namespace nts {
