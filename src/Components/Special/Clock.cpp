@@ -10,6 +10,7 @@
 
 nts::ClockComponent::ClockComponent() : Acomponent(1)
 {
+    this->_state = nts::Tristate::Undefined;
 }
 
 void nts::ClockComponent::setState(nts::Tristate state)
@@ -17,11 +18,17 @@ void nts::ClockComponent::setState(nts::Tristate state)
     this->_state = state;
 }
 
+void nts::ClockComponent::simulate(std::size_t tick)
+{
+    if (tick % 2 == 0)
+        this->_state = this->_state;
+    else
+        this->_state = (this->_state == nts::Tristate::True) ? nts::Tristate::False : nts::Tristate::True;
+}
+
 nts::Tristate nts::ClockComponent::compute(std::size_t pin)
 {
-    if (pin == 1 && this->_ticks % 2 == 0)
+    if (pin == 1)
         return this->_state;
-    else
-        return (this->_state == nts::Tristate::True) ? nts::Tristate::False : nts::Tristate::True;
     return nts::Tristate::Undefined;
 }
