@@ -10,14 +10,21 @@ NAME 	= 			nanotekspice
 
 _SRC 	=			Main.cpp							\
 					Acomponent.cpp						\
-          NanoTekSpice.cpp								\
-					Parsing/CircuitFile.cpp							\
-					Utils/Utils.cpp									\
-					\
+          			NanoTekSpice.cpp					\
+					Parsing/CircuitFile.cpp				\
+					Utils/Utils.cpp						\
+							\
 					Components/Elementary/And.cpp		\
 					Components/Elementary/Not.cpp 		\
 					Components/Elementary/Or.cpp 		\
 					Components/Elementary/Xor.cpp		\
+					\
+					Components/Special/Input.cpp		\
+					Components/Special/Output.cpp		\
+					Components/Special/True.cpp			\
+					Components/Special/False.cpp		\
+					Components/Special/Clock.cpp		\
+					\
 
 
 SRCDIR 	= 			src/
