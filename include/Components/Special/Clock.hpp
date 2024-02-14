@@ -15,6 +15,7 @@ namespace nts {
         ClockComponent();
         ~ClockComponent() = default;
         nts::Tristate compute(std::size_t pin) override;
+        void simulate(std::size_t tick) override;
         void setState(nts::Tristate state) override;
     };
 }

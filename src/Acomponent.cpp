@@ -16,7 +16,7 @@ nts::Acomponent::Acomponent(size_t size)
 
 void nts::Acomponent::setState(nts::Tristate state)
 {
-    this->_state = state;
+    (void)state;
 }
 
 void nts::Acomponent::simulate(std::size_t tick)
