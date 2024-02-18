@@ -38,3 +38,7 @@ nanotekspice
 
 # Logs files
 *.log
+
+#valgrind
+valgrind-out.txt
+vgcore.*

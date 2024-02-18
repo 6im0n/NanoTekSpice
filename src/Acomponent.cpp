@@ -10,6 +10,7 @@
 
 nts::Acomponent::Acomponent(size_t size)
 {
+    this->_ticks = 0;
     this->_links = std::deque<nts::IComponent *>(size + 1, nullptr);
     this->_pins = std::deque<size_t>(size + 1, 0);
 }
