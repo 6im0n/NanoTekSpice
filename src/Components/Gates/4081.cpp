@@ -44,7 +44,7 @@ nts::C4081::C4081() : AChipset(14)
 
 nts::Tristate nts::C4081::compute(std::size_t pin)
 {
-    if (pin == 0 || pin == 7 || pin == 14 || pin > _intPins.size())
+    if (pin == 0 || pin == 7 || pin == 14 || pin > this->_intPins.size())
         return nts::Tristate::Undefined;
     return this->_intLinks[pin]->compute(_intPins[pin]);
 }
