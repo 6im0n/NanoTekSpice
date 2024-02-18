@@ -9,6 +9,7 @@
 
 #include <array>
 #include "AChipset.hpp"
+
 namespace nts {
     class C4001 : public AChipset {
     public:
