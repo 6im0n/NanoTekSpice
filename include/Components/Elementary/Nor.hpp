@@ -2,19 +2,18 @@
 ** EPITECH PROJECT, 2024
 ** MicroTekSpice
 ** File description:
-** 4030
+** And
 */
 
 #pragma once
 
-#include <array>
-#include "AChipset.hpp"
+#include "Acomponent.hpp"
 
 namespace nts {
-    class C4030 : public AChipset {
+    class NorComponent : public Acomponent {
     public:
-        C4030();
-        ~C4030() = default;
+        NorComponent();
+        ~NorComponent() = default;
         nts::Tristate compute(std::size_t pin) override;
     };
 }

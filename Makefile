@@ -23,7 +23,9 @@ _SRC 	=			Main.cpp							\
 					\
 					Components/Elementary/And.cpp		\
 					Components/Elementary/Not.cpp 		\
+					Components/Elementary/Nand.cpp		\
 					Components/Elementary/Or.cpp 		\
+					Components/Elementary/Nor.cpp		\
 					Components/Elementary/Xor.cpp		\
 					\
 					Components/Special/Input.cpp		\
@@ -32,6 +34,15 @@ _SRC 	=			Main.cpp							\
 					Components/Special/False.cpp		\
 					Components/Special/Clock.cpp		\
 					\
+					AChipset.cpp						\
+					\
+					Components/Gates/4081.cpp			\
+					Components/Gates/4071.cpp			\
+					Components/Gates/4069.cpp			\
+					Components/Gates/4030.cpp			\
+					Components/Gates/4011.cpp			\
+					Components/Gates/4001.cpp			\
+
 
 
 SRCDIR 	= 			src/
@@ -44,17 +55,23 @@ INC 	= 			-I./include
 
 FLAGS 	=			-W -Wall -Wextra -Werror -g3
 
+LD 		= 			g++
+
 ## Colors
-GREEN = @/bin/echo -e "\x1b[32m $1\x1b[0m"
-YELLOW = @/bin/echo -e "\x1b[33m $1\x1b[0m"
+GREEN = /bin/echo -e "\x1b[32m $1\x1b[0m"
+YELLOW = /bin/echo -e "\x1b[33m $1\x1b[0m"
 
 ## Rules
-all: 		$(NAME)	clean
+all: 		$(NAME)
 
-$(NAME):
-		@g++ -o $(NAME) $(SRC) $(INC) $(LIBS) $(MODULES) $(FLAGS)
+$(NAME):  $(OBJ)
+		@$(LD) -o $(NAME) $(OBJ)
 		@$(call GREEN,"Build Done ✅!")
 
+%.o: 	%.cpp
+		@$(CXX) $(FLAGS) $(INC) -c -o $@ $< && \
+		$(call YELLOW,"✅ $<") || \
+		$(call YELLOW,"❌ $<")
 clean:
 		@rm -f $(OBJ)
 

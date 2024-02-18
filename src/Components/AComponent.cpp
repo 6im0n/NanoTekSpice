@@ -14,6 +14,7 @@ std::string nts::AComponent::getName() const
 
 nts::AComponent::AComponent(size_t size, const std::string &name)
 {
+    this->_ticks = 0;
     this->_links = std::deque<nts::IComponent *>(size + 1, nullptr);
     this->_pins = std::deque<size_t>(size + 1, 0);
     this->_name = name;
