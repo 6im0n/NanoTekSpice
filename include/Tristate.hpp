@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "Include.hpp"
+
 namespace nts {
     enum Tristate {
         Undefined = (-true),
@@ -14,3 +16,6 @@ namespace nts {
         False = false
     };
 }
+
+std::ostream &operator<<(std::ostream &os, nts::Tristate const &value);
+std::string operator+(std::string const &str, nts::Tristate const &value);
