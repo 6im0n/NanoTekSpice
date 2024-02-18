@@ -9,11 +9,18 @@
 NAME 	= 			nanotekspice
 
 _SRC 	=			Main.cpp							\
-					Acomponent.cpp						\
           			NanoTekSpice.cpp					\
+					\
+					Shell/Execution.cpp					\
+					\
 					Parsing/CircuitFile.cpp				\
+					\
 					Utils/Utils.cpp						\
-							\
+					Utils/Error.cpp						\
+					Utils/Tristate.cpp 					\
+					\
+					Components/AComponent.cpp			\
+					\
 					Components/Elementary/And.cpp		\
 					Components/Elementary/Not.cpp 		\
 					Components/Elementary/Or.cpp 		\

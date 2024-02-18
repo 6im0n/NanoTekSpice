@@ -8,7 +8,7 @@
 #pragma once
 
 #include <iostream>
-#include "Tristate.hpp"
+#include "Utils/Tristate.hpp"
 
 namespace nts {
     class IComponent {

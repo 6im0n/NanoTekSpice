@@ -5,7 +5,7 @@
 ** Tristate
 */
 
-#include "Tristate.hpp"
+#include "Utils/Tristate.hpp"
 
 std::ostream &operator<<(std::ostream &os, nts::Tristate const &value)
 {
