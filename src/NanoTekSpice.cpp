@@ -74,6 +74,14 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"or", [](const std::string &name) { return std::make_unique<OrComponent>( OrComponent(name)); }},
         {"xor", [](const std::string &name) { return std::make_unique<XorComponent>( XorComponent(name)); }},
         {"not", [](const std::string &name) { return std::make_unique<NotComponent>( NotComponent(name)); }},
+        {"nor", [](const std::string &name) { return std::make_unique<NorComponent>( NorComponent(name)); }},
+        {"nand", [](const std::string &name) { return std::make_unique<NandComponent>( NandComponent(name)); }},
+        {"4001", [](const std::string &name) { return std::make_unique<C4001>( C4001(name)); }},
+        {"4011", [](const std::string &name) { return std::make_unique<C4011>( C4011(name)); }},
+        {"4030", [](const std::string &name) { return std::make_unique<C4030>( C4030(name)); }},
+        {"4069", [](const std::string &name) { return std::make_unique<C4069>( C4069(name)); }},
+        {"4071", [](const std::string &name) { return std::make_unique<C4071>( C4071(name)); }},
+        {"4081", [](const std::string &name) { return std::make_unique<C4081>( C4081(name)); }},
     };
 
     if (factory.find(type) == factory.end())

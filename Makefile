@@ -20,6 +20,7 @@ _SRC 	=			Main.cpp							\
 					Utils/Tristate.cpp 					\
 					\
 					Components/AComponent.cpp			\
+					Components/AChipset.cpp				\
 					\
 					Components/Elementary/And.cpp		\
 					Components/Elementary/Not.cpp 		\
@@ -33,8 +34,6 @@ _SRC 	=			Main.cpp							\
 					Components/Special/True.cpp			\
 					Components/Special/False.cpp		\
 					Components/Special/Clock.cpp		\
-					\
-					AChipset.cpp						\
 					\
 					Components/Gates/4081.cpp			\
 					Components/Gates/4071.cpp			\

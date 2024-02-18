@@ -26,9 +26,14 @@
 #include "Components/Gates/4011.hpp"
 #include "Components/Elementary/Nand.hpp"
 
-nts::C4011::C4011() : AChipset(14)
+nts::C4011::C4011(std::string name) : AChipset(14, name)
 {
-    std::array<NandComponent*, 4> NandGates = {new nts::NandComponent, new nts::NandComponent, new nts::NandComponent, new nts::NandComponent};
+    std::array<NandComponent*, 4> NandGates = {
+        new nts::NandComponent,
+        new nts::NandComponent,
+        new nts::NandComponent,
+        new nts::NandComponent
+        };
 
     this->_intLinks = {
         nullptr,

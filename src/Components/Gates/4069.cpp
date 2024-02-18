@@ -38,9 +38,16 @@
 #include "Components/Gates/4069.hpp"
 #include "Components/Elementary/Not.hpp"
 
-nts::C4069::C4069() : AChipset(14)
+nts::C4069::C4069(std::string name) : AChipset(14, name)
 {
-    std::array<NotComponent*, 6> NotGate = {new nts::NotComponent, new nts::NotComponent, new nts::NotComponent, new nts::NotComponent, new nts::NotComponent, new nts::NotComponent};
+    std::array<NotComponent*, 6> NotGate = {
+        new nts::NotComponent,
+        new nts::NotComponent,
+        new nts::NotComponent,
+        new nts::NotComponent,
+        new nts::NotComponent,
+        new nts::NotComponent
+        };
 
     this->_intLinks = {
         nullptr,

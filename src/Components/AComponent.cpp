@@ -7,11 +7,6 @@
 
 #include "Components/AComponent.hpp"
 
-std::string nts::AComponent::getName() const
-{
-    return this->_name;
-}
-
 nts::AComponent::AComponent(size_t size, const std::string &name)
 {
     this->_ticks = 0;
@@ -41,4 +36,9 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin)
     if (this->_links[pin] == nullptr)
         return nts::Tristate::Undefined;
     return this->_links[pin]->compute(this->_pins[pin]);
+}
+
+std::string nts::AComponent::getName() const
+{
+    return this->_name;
 }

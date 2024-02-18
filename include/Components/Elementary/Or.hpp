@@ -12,7 +12,7 @@
 namespace nts {
     class OrComponent : public AComponent {
     public:
-        OrComponent(std::string name);
+        OrComponent(std::string name = "");
         ~OrComponent() = default;
         nts::Tristate compute(std::size_t pin) override;
     };

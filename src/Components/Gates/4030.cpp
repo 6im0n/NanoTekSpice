@@ -26,9 +26,14 @@
 #include "Components/Gates/4030.hpp"
 #include "Components/Elementary/Xor.hpp"
 
-nts::C4030::C4030() : AChipset(14)
+nts::C4030::C4030(std::string name) : AChipset(14, name)
 {
-    std::array<XorComponent*, 4> XorGate = {new nts::XorComponent, new nts::XorComponent, new nts::XorComponent, new nts::XorComponent};
+    std::array<XorComponent*, 4> XorGate = {
+        new nts::XorComponent,
+        new nts::XorComponent,
+        new nts::XorComponent,
+        new nts::XorComponent
+        };
 
     this->_intLinks = {
         nullptr,

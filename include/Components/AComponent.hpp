@@ -13,7 +13,7 @@
 namespace nts {
     class AComponent : public IComponent {
     public:
-        AComponent(size_t, const std::string &name);
+        AComponent(size_t size, const std::string &name);
         ~AComponent() = default;
         void simulate(std::size_t tick) override;
         void setLink(std::size_t pin, nts::IComponent& other, std::size_t otherPin) override;
