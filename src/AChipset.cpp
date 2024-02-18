@@ -28,6 +28,9 @@ void nts::AChipset::simulate(std::size_t tick)
 
 void nts::AChipset::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
 {
+    if (this->_intLinks[pin] == nullptr) {
+        throw std::runtime_error("Invalid internal link");
+    }
     this->_extlinks[pin] = &other;
     this->_extPins[pin] = otherPin;
     this->_intLinks[pin]->setLink(this->_intPins[pin], other, otherPin);
