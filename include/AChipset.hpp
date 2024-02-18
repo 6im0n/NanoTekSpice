@@ -22,7 +22,7 @@ namespace nts {
     protected:
         size_t _ticks;
         std::deque<IComponent *> _intLinks;
-        std::deque<IComponent*> _extlinks;
+        std::deque<IComponent *> _extlinks;
         std::deque<size_t> _extPins;
         std::deque<size_t> _intPins;
     };
