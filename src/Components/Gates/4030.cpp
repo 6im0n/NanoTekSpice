@@ -25,8 +25,6 @@
 */
 #include "Components/Gates/4030.hpp"
 #include "Components/Elementary/Xor.hpp"
-#include <array>
-#include <iostream>
 
 nts::C4030::C4030() : AChipset(14)
 {
@@ -45,7 +43,7 @@ nts::C4030::C4030() : AChipset(14)
 
 nts::Tristate nts::C4030::compute(std::size_t pin)
 {
-    if (pin == 0 || pin == 7 || pin == 14 || this->_intLinks[pin] == nullptr)
+    if (pin == 0 || pin == 7 || pin == 14 || pin > _intPins.size())
         return nts::Tristate::Undefined;
     return this->_intLinks[pin]->compute(_intPins[pin]);
 }

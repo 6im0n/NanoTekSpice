@@ -23,7 +23,6 @@
            +------------------------+
 */
 
-#include <array>
 #include "Components/Gates/4011.hpp"
 #include "Components/Elementary/Nand.hpp"
 
@@ -45,7 +44,7 @@ nts::C4011::C4011() : AChipset(14)
 
 nts::Tristate nts::C4011::compute(std::size_t pin)
 {
-    if (pin == 0 || pin == 7 || pin == 14 || this->_intLinks[pin] == nullptr)
+    if (pin == 0 || pin == 7 || pin == 14 || pin > _intPins.size())
         return nts::Tristate::Undefined;
     return this->_intLinks[pin]->compute(_intPins[pin]);
 }
