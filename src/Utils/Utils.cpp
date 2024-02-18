@@ -8,7 +8,7 @@
 #include "Include.hpp"
 #include "Utils/Utils.hpp"
 
-void Utils::trimEnd(std::string &str) {
+void Utils::trim(std::string &str) {
     const char *ws = " \t\n";
 
     str.erase(0, str.find_first_not_of(ws));

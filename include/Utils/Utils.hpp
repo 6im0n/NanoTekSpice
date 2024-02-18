@@ -19,6 +19,6 @@ namespace Utils {
      * @note This function modifies the string in place
      * @author Marius Pain
      */
-    void trimEnd(std::string &str);
+    void trim(std::string &str);
 
 }
