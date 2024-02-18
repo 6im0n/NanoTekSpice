@@ -7,7 +7,7 @@
 
 #include "Components/Special/True.hpp"
 
-nts::TrueComponent::TrueComponent() : Acomponent(1)
+nts::TrueComponent::TrueComponent(std::string name) : AComponent(1, name)
 {
 }
 

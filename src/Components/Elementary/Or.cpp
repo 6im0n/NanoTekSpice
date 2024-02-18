@@ -7,7 +7,7 @@
 
 #include "Components/Elementary/Or.hpp"
 
-nts::OrComponent::OrComponent() : Acomponent(3)
+nts::OrComponent::OrComponent(std::string name) : AComponent(3, name)
 {
 }
 

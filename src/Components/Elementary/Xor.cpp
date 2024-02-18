@@ -7,7 +7,7 @@
 
 #include "Components/Elementary/Xor.hpp"
 
-nts::XorComponent::XorComponent() : Acomponent(3)
+nts::XorComponent::XorComponent(std::string name) : AComponent(3, name)
 {
 }
 

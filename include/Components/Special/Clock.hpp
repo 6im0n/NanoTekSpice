@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include "Acomponent.hpp"
+#include "Components/AComponent.hpp"
 
 namespace nts {
-    class ClockComponent : public Acomponent {
+    class ClockComponent : public AComponent {
     public:
-        ClockComponent();
+        ClockComponent(std::string name);
         ~ClockComponent() = default;
         nts::Tristate compute(std::size_t pin) override;
         void simulate(std::size_t tick) override;

@@ -7,7 +7,7 @@
 
 #include "Components/Special/Input.hpp"
 
-nts::InputComponent::InputComponent() : Acomponent(1)
+nts::InputComponent::InputComponent(std::string name) : AComponent(1, name)
 {
     this->_state = nts::Tristate::Undefined;
 }

@@ -7,7 +7,7 @@
 
 #include "Components/Elementary/And.hpp"
 
-nts::AndComponent::AndComponent() : Acomponent(3)
+nts::AndComponent::AndComponent(std::string name) : AComponent(3, name)
 {
 }
 

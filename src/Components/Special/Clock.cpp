@@ -8,7 +8,7 @@
 
 #include "Components/Special/Clock.hpp"
 
-nts::ClockComponent::ClockComponent() : Acomponent(1)
+nts::ClockComponent::ClockComponent(std::string name) : AComponent(1, name)
 {
     this->_state = nts::Tristate::Undefined;
 }
@@ -20,6 +20,8 @@ void nts::ClockComponent::setState(nts::Tristate state)
 
 void nts::ClockComponent::simulate(std::size_t tick)
 {
+    if (this->_state == nts::Tristate::Undefined)
+        return;
     if (tick % 2 == 0)
         this->_state = this->_state;
     else
