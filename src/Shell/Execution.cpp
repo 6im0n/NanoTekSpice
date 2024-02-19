@@ -13,10 +13,10 @@ void nts::Execution::setState(const std::string &inputName, const std::string &v
     std::vector<std::string> inputNames = this->_nano.getInputNames();
 
     if (comp == nullptr) {
-        throw nts::Error("Component not found: " + inputName);
+        throw nts::ShellError("Component not found: " + inputName);
     }
     if (std::find(inputNames.begin(), inputNames.end(), inputName) == inputNames.end()) {
-        throw nts::Error("Component is not an input: " + inputName);
+        throw nts::ShellError("Component is not an input: " + inputName);
     }
     if (value == "0") {
         comp->setState(nts::Tristate::False);
@@ -51,14 +51,14 @@ bool nts::Execution::execCommand()
             this->setState(match[1], match[2]);
             return false;
         } else {
-            throw nts::Error("Invalid input=value format: " + this->_command);
+            throw nts::ShellError("Invalid input=value format: " + this->_command);
         }
     }
     if (this->_commands.find(this->_command) != this->_commands.end()) {
         this->_commands[this->_command]();
         return false;
     } else {
-        throw nts::Error("Unknown command: " + this->_command);
+        throw nts::ShellError("Unknown command: " + this->_command);
     }
 }
 
@@ -66,13 +66,11 @@ void nts::Execution::run()
 {
     bool exit = false;
 
-    // Ask if we continue the execution after a wrong command
-    // or if we stop the execution
     while (!exit) {
         try {
             this->readCommand();
             exit = this->execCommand();
-        } catch (const nts::Error &e) {
+        } catch (const nts::ShellError &e) {
             std::cerr << e.what() << std::endl;
         }
     }

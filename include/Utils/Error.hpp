@@ -18,4 +18,13 @@ namespace nts {
         private:
             std::string _message;
     };
+
+    class ShellError : public std::exception {
+        public:
+            ShellError(std::string const &message);
+            const char *what() const noexcept override;
+
+        private:
+            std::string _message;
+    };
 }
