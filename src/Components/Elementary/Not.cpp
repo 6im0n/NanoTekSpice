@@ -7,7 +7,7 @@
 
 #include "Components/Elementary/Not.hpp"
 
-nts::NotComponent::NotComponent() : Acomponent(2)
+nts::NotComponent::NotComponent(std::string name) : AComponent(2, name)
 {
 }
 

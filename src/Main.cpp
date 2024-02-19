@@ -7,6 +7,8 @@
 
 #include "Include.hpp"
 #include "Parsing/CircuitFile.hpp"
+#include "NanoTekSpice.hpp"
+#include "Shell/Execution.hpp"
 
 int display_help()
 {
@@ -29,7 +31,11 @@ int main(int ac, char **av)
     }
     try {
         nts::CircuitFile circuit(av[1]);
-    } catch (nts::CircuitFile::FileError &e) {
+        nts::NanoTekSpice nano(circuit);
+
+        nts::Execution exec(nano);
+        exec.run();
+    } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
         return 84;
     }

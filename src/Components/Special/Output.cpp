@@ -7,7 +7,7 @@
 
 #include "Components/Special/Output.hpp"
 
-nts::OutputComponent::OutputComponent() : Acomponent(1)
+nts::OutputComponent::OutputComponent(std::string name) : AComponent(1, name)
 {
 }
 

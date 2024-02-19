@@ -9,21 +9,15 @@
 
 #include "Include.hpp"
 #include "Utils/Utils.hpp"
+#include "Utils/Error.hpp"
 
 namespace nts {
     class CircuitFile {
         public:
             CircuitFile(std::string file);
             ~CircuitFile() = default;
-
-            class FileError : public std::exception {
-                public:
-                    FileError(std::string const &message);
-                    const char *what() const noexcept override;
-
-                private:
-                    std::string _message;
-            };
+            std::deque<std::pair<std::string, std::string>> getChipsets() const;
+            std::deque<std::pair<std::pair<std::string, int>, std::pair<std::string, int>>> getLinks() const;
 
         private:
             void readChipsets(std::deque<std::string> &fileContent, size_t &pos);

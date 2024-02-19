@@ -26,9 +26,14 @@
 #include "Components/Gates/4081.hpp"
 #include "Components/Elementary/And.hpp"
 
-nts::C4081::C4081() : AChipset(14)
+nts::C4081::C4081(std::string name) : AChipset(14, name)
 {
-    std::array<AndComponent*, 4> andGate = {new nts::AndComponent, new nts::AndComponent, new nts::AndComponent, new nts::AndComponent};
+    std::array<AndComponent*, 4> andGate = {
+        new nts::AndComponent,
+        new nts::AndComponent,
+        new nts::AndComponent,
+        new nts::AndComponent
+        };
 
     this->_intLinks = {
         nullptr,

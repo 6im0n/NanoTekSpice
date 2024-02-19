@@ -7,7 +7,7 @@
 
 #include "Components/Elementary/Nand.hpp"
 
-nts::NandComponent::NandComponent() : Acomponent(3)
+nts::NandComponent::NandComponent(std::string name) : AComponent(3, name)
 {
 }
 

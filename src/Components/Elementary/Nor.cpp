@@ -7,7 +7,7 @@
 
 #include "Components/Elementary/Nor.hpp"
 
-nts::NorComponent::NorComponent() : Acomponent(3)
+nts::NorComponent::NorComponent(std::string name) : AComponent(3, name)
 {
 }
 

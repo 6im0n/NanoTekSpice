@@ -26,9 +26,14 @@
 #include "Components/Gates/4001.hpp"
 #include "Components/Elementary/Nor.hpp"
 
-nts::C4001::C4001() : AChipset(14)
+nts::C4001::C4001(std::string name) : AChipset(14, name)
 {
-    std::array<NorComponent*, 4> NorGates = {new nts::NorComponent, new nts::NorComponent, new nts::NorComponent, new nts::NorComponent};
+    std::array<NorComponent*, 4> NorGates = {
+        new nts::NorComponent,
+        new nts::NorComponent,
+        new nts::NorComponent,
+        new nts::NorComponent
+        };
 
     this->_intLinks = {
         nullptr,

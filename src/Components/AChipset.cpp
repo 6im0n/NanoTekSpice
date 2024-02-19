@@ -5,11 +5,12 @@
 ** AChipset
 */
 
-#include "AChipset.hpp"
+#include "Components/AChipset.hpp"
 
-nts::AChipset::AChipset(size_t size)
+nts::AChipset::AChipset(size_t size, std::string name)
 {
     this->_ticks = 0;
+    this->_name = name;
     this->_intLinks = std::deque<nts::IComponent *>(size + 1, nullptr);
     this->_extlinks = std::deque<nts::IComponent *>(size + 1, nullptr);
     this->_intPins = std::deque<size_t>(size + 1, 0);
@@ -41,4 +42,9 @@ nts::Tristate nts::AChipset::getLink(std::size_t pin)
     if (this->_extlinks[pin] == nullptr)
         return nts::Tristate::Undefined;
     return this->_extlinks[pin]->compute(this->_extPins[pin]);
+}
+
+std::string nts::AChipset::getName() const
+{
+    return this->_name;
 }

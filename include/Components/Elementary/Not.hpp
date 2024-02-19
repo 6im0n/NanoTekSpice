@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include "Acomponent.hpp"
+#include "Components/AComponent.hpp"
 
 namespace nts {
-    class NotComponent : public Acomponent {
+    class NotComponent : public AComponent {
     public:
-        NotComponent();
+        NotComponent(std::string name = "");
         ~NotComponent() = default;
         nts::Tristate compute(std::size_t pin) override;
     };

@@ -28,9 +28,14 @@
 #include "Components/Gates/4071.hpp"
 #include "Components/Elementary/Or.hpp"
 
-nts::C4071::C4071() : AChipset(14)
+nts::C4071::C4071(std::string name) : AChipset(14, name)
 {
-    std::array<OrComponent*, 4> OrGate = {new nts::OrComponent, new nts::OrComponent, new nts::OrComponent, new nts::OrComponent};
+    std::array<OrComponent*, 4> OrGate = {
+        new nts::OrComponent,
+        new nts::OrComponent,
+        new nts::OrComponent,
+        new nts::OrComponent
+        };
 
     this->_intLinks = {
         nullptr,

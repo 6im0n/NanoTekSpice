@@ -8,12 +8,12 @@
 #pragma once
 
 #include <array>
-#include "AChipset.hpp"
+#include "Components/AChipset.hpp"
 
 namespace nts {
     class C4011 : public AChipset {
     public:
-        C4011();
+        C4011(std::string name = "");
         ~C4011() = default;
         nts::Tristate compute(std::size_t pin) override;
     };
