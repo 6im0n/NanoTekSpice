@@ -17,3 +17,4 @@
 #include <regex>
 #include <map>
 #include <unordered_map>
+#include <signal.h>
