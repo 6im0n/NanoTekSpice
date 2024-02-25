@@ -28,3 +28,8 @@
 #include "Components/Gates/4069.hpp"
 #include "Components/Gates/4071.hpp"
 #include "Components/Gates/4081.hpp"
+
+#include "Components/Extra/Duplicate.hpp"
+#include "Components/Extra/FullAdder.hpp"
+
+#include "Components/Advanced/4008.hpp"
