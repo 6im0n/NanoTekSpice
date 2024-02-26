@@ -41,6 +41,11 @@ _SRC 	=			Main.cpp							\
 					Components/Gates/4030.cpp			\
 					Components/Gates/4011.cpp			\
 					Components/Gates/4001.cpp			\
+					\
+					Components/Extra/Duplicate.cpp		\
+					Components/Extra/FullAdder.cpp		\
+					\
+					Components/Advanced/4008.cpp		\
 
 
 

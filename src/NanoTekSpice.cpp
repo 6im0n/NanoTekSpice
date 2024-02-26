@@ -7,6 +7,14 @@
 
 #include "NanoTekSpice.hpp"
 
+bool inLoop = false;
+
+void sigintHandler(int sig_num)
+{
+    (void)sig_num;
+    inLoop = false;
+}
+
 void nts::NanoTekSpice::getDisplayContent()
 {
     IComponent *compTemp = nullptr;
@@ -15,12 +23,16 @@ void nts::NanoTekSpice::getDisplayContent()
     this->_circuitInfo += "input(s):\n";
     for (auto &input : this->_inputNames) {
         compTemp = this->getComponent(input);
-        this->_circuitInfo += compTemp->getName() + ": " + compTemp->compute(1) + "\n";
+        if (compTemp == nullptr)
+            throw nts::Error("Error: input not found");
+        this->_circuitInfo += "  " + compTemp->getName() + ": " + compTemp->compute(1) + "\n";
     }
     this->_circuitInfo += "output(s):\n";
     for (auto &output : this->_outputNames) {
         compTemp = this->getComponent(output);
-        this->_circuitInfo += compTemp->getName() + ": " + compTemp->compute(1) + "\n";
+        if (compTemp == nullptr)
+            throw nts::Error("Error: output not found");
+        this->_circuitInfo += "  " + compTemp->getName() + ": " + compTemp->compute(1) + "\n";
     }
 }
 
@@ -40,12 +52,14 @@ void nts::NanoTekSpice::display()
 
 void nts::NanoTekSpice::loop()
 {
-    bool sigint = false;
+    inLoop = true;
 
-    while (!sigint) {
+    signal(SIGINT, sigintHandler);
+    while (inLoop) {
         this->simulate();
         this->display();
     }
+    signal(SIGINT, SIG_DFL);
 }
 
 nts::IComponent *nts::NanoTekSpice::getComponent(const std::string &name)
@@ -54,7 +68,7 @@ nts::IComponent *nts::NanoTekSpice::getComponent(const std::string &name)
         if (comp->getName() == name)
             return comp.get();
     }
-    throw nts::Error("Error: component not found");
+    return nullptr;
 }
 
 std::vector<std::string> nts::NanoTekSpice::getInputNames() const
@@ -82,6 +96,8 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"4069", [](const std::string &name) { return std::make_unique<C4069>( C4069(name)); }},
         {"4071", [](const std::string &name) { return std::make_unique<C4071>( C4071(name)); }},
         {"4081", [](const std::string &name) { return std::make_unique<C4081>( C4081(name)); }},
+        {"fulladder", [](const std::string &name) { return std::make_unique<FullAdder>( FullAdder(name)); }},
+        {"4008", [](const std::string &name) { return std::make_unique<C4008>( C4008(name)); }},
     };
 
     if (factory.find(type) == factory.end())
