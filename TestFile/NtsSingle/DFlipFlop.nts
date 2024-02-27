@@ -1,0 +1,18 @@
+# D Flip Flop
+
+.chipsets:
+input cl
+input data
+input reset
+input set
+output q1
+output q2
+dflipflop ff
+
+.links:
+cl:1 ff:1
+data:1 ff:2
+reset:1 ff:3
+set:1 ff:4
+ff:5 q1:1
+ff:6 q2:1

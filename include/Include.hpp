@@ -18,3 +18,6 @@
 #include <map>
 #include <unordered_map>
 #include <signal.h>
+#include <algorithm>
+
+#define MAX_LOOP 10000

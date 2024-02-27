@@ -13,6 +13,7 @@ nts::NorComponent::NorComponent(std::string name) : AComponent(3, name)
 
 nts::Tristate nts::NorComponent::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 3) {
         nts::Tristate state1 = getLink(1);
         nts::Tristate state2 = getLink(2);

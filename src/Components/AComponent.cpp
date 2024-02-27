@@ -13,6 +13,7 @@ nts::AComponent::AComponent(size_t size, const std::string &name)
     this->_links = std::deque<nts::IComponent *>(size + 1, nullptr);
     this->_pins = std::deque<size_t>(size + 1, 0);
     this->_name = name;
+    this->loop = 0;
 }
 
 void nts::AComponent::setState(nts::Tristate state)
@@ -23,6 +24,7 @@ void nts::AComponent::setState(nts::Tristate state)
 void nts::AComponent::simulate(std::size_t tick)
 {
     (void)tick;
+    this->loop = 0;
 }
 
 void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
@@ -41,4 +43,11 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin)
 std::string nts::AComponent::getName() const
 {
     return this->_name;
+}
+
+void nts::AComponent::checkIfNotLoop()
+{
+    if (this->loop >= MAX_LOOP)
+        throw nts::Error("Infinite loop detected");
+    this->loop++;
 }
