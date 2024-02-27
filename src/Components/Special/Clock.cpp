@@ -20,6 +20,7 @@ void nts::ClockComponent::setState(nts::Tristate state)
 
 void nts::ClockComponent::simulate(std::size_t tick)
 {
+    this->loop = 0;
     if (this->_state == nts::Tristate::Undefined)
         return;
     if (tick % 2 == 0)
@@ -30,6 +31,7 @@ void nts::ClockComponent::simulate(std::size_t tick)
 
 nts::Tristate nts::ClockComponent::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 1)
         return this->_state;
     return nts::Tristate::Undefined;

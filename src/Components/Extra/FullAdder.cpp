@@ -44,6 +44,7 @@ nts::FullAdder::FullAdder(std::string name) : AChipset(5, name)
 
 nts::Tristate nts::FullAdder::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 0 || pin > this->_intPins.size())
         return nts::Tristate::Undefined;
     return this->_intLinks[pin]->compute(_intPins[pin]);

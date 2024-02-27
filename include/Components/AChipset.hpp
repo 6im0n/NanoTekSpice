@@ -20,6 +20,7 @@ namespace nts {
         nts::Tristate getLink(std::size_t pin) override;
         void setState(nts::Tristate state) override;
         std::string getName() const override;
+        void checkIfNotLoop();
     protected:
         size_t _ticks;
         std::string _name;
@@ -27,5 +28,6 @@ namespace nts {
         std::deque<IComponent *> _extlinks;
         std::deque<size_t> _extPins;
         std::deque<size_t> _intPins;
+        size_t loop;
     };
 }

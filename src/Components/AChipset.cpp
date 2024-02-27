@@ -15,6 +15,7 @@ nts::AChipset::AChipset(size_t size, std::string name)
     this->_extlinks = std::deque<nts::IComponent *>(size + 1, nullptr);
     this->_intPins = std::deque<size_t>(size + 1, 0);
     this->_extPins = std::deque<size_t>(size + 1, 0);
+    this->loop = 0;
 }
 
 void nts::AChipset::setState(nts::Tristate state)
@@ -25,6 +26,7 @@ void nts::AChipset::setState(nts::Tristate state)
 void nts::AChipset::simulate(std::size_t tick)
 {
     (void)tick;
+    this->loop = 0;
 }
 
 void nts::AChipset::setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin)
@@ -47,4 +49,11 @@ nts::Tristate nts::AChipset::getLink(std::size_t pin)
 std::string nts::AChipset::getName() const
 {
     return this->_name;
+}
+
+void nts::AChipset::checkIfNotLoop()
+{
+    if (this->loop >= MAX_LOOP)
+        throw nts::Error("Infinite loop detected");
+    this->loop++;
 }

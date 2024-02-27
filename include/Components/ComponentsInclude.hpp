@@ -31,5 +31,7 @@
 
 #include "Components/Extra/Duplicate.hpp"
 #include "Components/Extra/FullAdder.hpp"
+#include "Components/Extra/DFlipFlop.hpp"
 
 #include "Components/Advanced/4008.hpp"
+#include "Components/Advanced/4013.hpp"

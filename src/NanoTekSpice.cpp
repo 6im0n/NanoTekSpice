@@ -18,6 +18,8 @@ void sigintHandler(int sig_num)
 void nts::NanoTekSpice::getDisplayContent()
 {
     IComponent *compTemp = nullptr;
+    std::sort(this->_inputNames.begin(), this->_inputNames.end());
+    std::sort(this->_outputNames.begin(), this->_outputNames.end());
 
     this->_circuitInfo = "tick: " + std::to_string(this->ticks) + "\n";
     this->_circuitInfo += "input(s):\n";
@@ -97,12 +99,14 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"4071", [](const std::string &name) { return std::make_unique<C4071>( C4071(name)); }},
         {"4081", [](const std::string &name) { return std::make_unique<C4081>( C4081(name)); }},
         {"fulladder", [](const std::string &name) { return std::make_unique<FullAdder>( FullAdder(name)); }},
+        {"dflipflop", [](const std::string &name) { return std::make_unique<DFlipFlop>( DFlipFlop(name)); }},
         {"4008", [](const std::string &name) { return std::make_unique<C4008>( C4008(name)); }},
+        {"4013", [](const std::string &name) { return std::make_unique<C4013>( C4013(name)); }},
     };
 
     if (factory.find(type) == factory.end())
         throw nts::Error("Unknown component type: " + type);
-    if (type == "input" || type == "clock" || type == "true" || type == "false")
+    if (type == "input" || type == "clock")
         this->_inputNames.push_back(name);
     if (type == "output")
         this->_outputNames.push_back(name);
@@ -131,7 +135,7 @@ nts::NanoTekSpice::NanoTekSpice(nts::CircuitFile &circuitFile)
     for (auto &link : links) {
         this->setLink(link.first.first, link.first.second, link.second.first, link.second.second);
     }
-    if (this->_inputNames.empty() || this->_outputNames.empty())
+    if (this->_outputNames.empty())
         throw nts::Error("Error: missing input or output");
     this->ticks = 0;
     getDisplayContent();
