@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include "Utils/Tristate.hpp"
+#include "Utils/Error.hpp"
 
 namespace nts {
     class IComponent {
