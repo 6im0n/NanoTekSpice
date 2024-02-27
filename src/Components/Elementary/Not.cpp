@@ -13,6 +13,7 @@ nts::NotComponent::NotComponent(std::string name) : AComponent(2, name)
 
 nts::Tristate nts::NotComponent::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 2) {
         nts::Tristate state = getLink(1);
         if (state == nts::Tristate::True)

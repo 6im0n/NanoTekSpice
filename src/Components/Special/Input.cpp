@@ -19,6 +19,7 @@ void nts::InputComponent::setState(nts::Tristate state)
 
 nts::Tristate nts::InputComponent::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 1)
         return this->_state;
     return nts::Tristate::Undefined;

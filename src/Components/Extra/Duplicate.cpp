@@ -13,6 +13,7 @@ nts::DupComponent::DupComponent(std::string name) : AComponent(3, name)
 
 nts::Tristate nts::DupComponent::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 1)
         return this->_links[1]->compute(this->_pins[1]);
     if (pin == 2 || pin == 3)
