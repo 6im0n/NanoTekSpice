@@ -8,13 +8,18 @@
 #pragma once
 
 #include <array>
-#include "Components/AChipset.hpp"
+#include "Components/AComponent.hpp"
 
 namespace nts {
-    class C4514 : public AChipset {
+    class C4514 : public AComponent {
     public:
         C4514(std::string name = "");
         ~C4514() = default;
         nts::Tristate compute(std::size_t pin) override;
+        void updateState(void);
+        void resetState(void);
+    private:
+        std::array<nts::Tristate, 16> _out;
+        std::map<int, int> _pinMap;
     };
 }
