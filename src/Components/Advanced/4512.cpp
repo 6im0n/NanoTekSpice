@@ -56,6 +56,7 @@ nts::Tristate nts::C4512::getOutput(void)
 
 nts::Tristate nts::C4512::compute(std::size_t pin)
 {
+    this->checkIfNotLoop();
     if (pin == 0 || pin == 8 || pin == 16 || pin > 16)
         return nts::Tristate::Undefined;
     if (pin == 14)
