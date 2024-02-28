@@ -41,7 +41,7 @@ nts::Tristate nts::C4512::getOutput(void)
     nts::Tristate in_c = this->getLink(13);
 
     if (enable == nts::Tristate::True || enable == nts::Tristate::Undefined)
-        return enable;
+        return nts::Tristate::Undefined;
     if (inhibit == nts::Tristate::Undefined)
         return nts::Tristate::Undefined;
     if (inhibit == nts::Tristate::True)
