@@ -102,6 +102,7 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"dflipflop", [](const std::string &name) { return std::make_unique<DFlipFlop>( DFlipFlop(name)); }},
         {"4008", [](const std::string &name) { return std::make_unique<C4008>( C4008(name)); }},
         {"4013", [](const std::string &name) { return std::make_unique<C4013>( C4013(name)); }},
+        {"4512", [](const std::string &name) { return std::make_unique<C4512>( C4512(name)); }},
     };
 
     if (factory.find(type) == factory.end())

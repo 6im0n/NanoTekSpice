@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include <array>
 #include "Components/AChipset.hpp"
 
 namespace nts {
