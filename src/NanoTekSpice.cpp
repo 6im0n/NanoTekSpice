@@ -103,6 +103,7 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"4008", [](const std::string &name) { return std::make_unique<C4008>( C4008(name)); }},
         {"4013", [](const std::string &name) { return std::make_unique<C4013>( C4013(name)); }},
         {"4512", [](const std::string &name) { return std::make_unique<C4512>( C4512(name)); }},
+        {"4094", [](const std::string &name) { return std::make_unique<C4094>( C4094(name)); }},
     };
 
     if (factory.find(type) == factory.end())
@@ -140,4 +141,7 @@ nts::NanoTekSpice::NanoTekSpice(nts::CircuitFile &circuitFile)
         throw nts::Error("Error: missing input or output");
     this->ticks = 0;
     getDisplayContent();
+    for (auto &comp : this->_components) {
+        comp->simulate(1);
+    }
 }
