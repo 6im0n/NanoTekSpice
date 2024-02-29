@@ -42,6 +42,3 @@ nanotekspice
 #valgrind
 valgrind-out.txt
 vgcore.*
-
-#Documentation
-documentation
