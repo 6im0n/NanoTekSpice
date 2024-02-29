@@ -46,7 +46,7 @@ nts::Tristate nts::C4017::compute(std::size_t pin)
         this->updateState();
         return this->_out[this->_pinMap.find(pin)->second];
     }
-    return nts::Tristate::False;
+    return nts::Tristate::Undefined;
 }
 
 void nts::C4017::resetState(void)
@@ -66,11 +66,12 @@ void nts::C4017::updateState(void)
 
     if (reset == nts::Tristate::True) {
         this->resetState();
+        return;
+    }
+    if (enable == nts::Tristate::True || enable == nts::Tristate::Undefined){
         enable == nts::Tristate::True ? this->_prevClock = nts::Tristate::False : this->_prevClock;
         return;
     }
-    if (enable == nts::Tristate::True || enable == nts::Tristate::Undefined)
-        return;
     if (clock != this->_prevClock)
         this->_prevClock = clock;
     else
