@@ -8,7 +8,6 @@
 #pragma once
 
 #include "Components/IComponent.hpp"
-#include <deque>
 
 namespace nts {
     class AComponent : public IComponent {
