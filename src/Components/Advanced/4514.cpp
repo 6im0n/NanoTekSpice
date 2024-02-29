@@ -39,6 +39,7 @@
 
 nts::C4514::C4514(std::string name) : AComponent(24, name)
 {
+    this->_out = std::vector<nts::Tristate>(16, nts::Tristate::Undefined);
     this->_pinMap = {{11, 0}, {9, 1}, {10, 2}, {8, 3}, {7, 4}, {6, 5}, {5, 6}, {4, 7}, {18, 8}, {17, 9}, {20, 10}, {19, 11}, {14, 12}, {13, 13}, {16, 14}, {15, 15}};
     this->resetState();
 }
