@@ -75,7 +75,6 @@ void nts::C4514::resetState(void)
 
 void nts::C4514::updateState(void)
 {
-    nts::Tristate inhibit = getLink(23);
     nts::Tristate strobe = getLink(1);
     nts::Tristate in_a = getLink(2);
     nts::Tristate in_b = getLink(3);
