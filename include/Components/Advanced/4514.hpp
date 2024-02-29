@@ -18,7 +18,7 @@ namespace nts {
         void updateState(void);
         void resetState(void);
     private:
-        std::array<nts::Tristate, 16> _out;
+        std::vector<nts::Tristate> _out;
         std::map<size_t, size_t> _pinMap;
     };
 }
