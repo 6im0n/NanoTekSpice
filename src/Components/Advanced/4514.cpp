@@ -41,23 +41,31 @@ nts::C4514::C4514(std::string name) : AComponent(24, name)
 {
     this->_out = std::vector<nts::Tristate>(16, nts::Tristate::Undefined);
     this->_pinMap = {{11, 0}, {9, 1}, {10, 2}, {8, 3}, {7, 4}, {6, 5}, {5, 6}, {4, 7}, {18, 8}, {17, 9}, {20, 10}, {19, 11}, {14, 12}, {13, 13}, {16, 14}, {15, 15}};
-    this->resetState();
+    this->initialOutput();
 }
 
 nts::Tristate nts::C4514::compute(std::size_t pin)
 {
+    nts::Tristate inhibit = getLink(23);
     this->checkIfNotLoop();
     if (pin == 0 || pin == 24 || pin == 12 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
     if (pin == 2 || pin == 3 || pin == 21 || pin == 22 || pin == 23) {
         return this->_links[pin]->compute(this->_pins[pin]);
     }
-    if (getLink(23) == nts::Tristate::True)
+    if (inhibit == nts::Tristate::True || inhibit == nts::Tristate::Undefined)
         return nts::Tristate::False;
     else {
         this->updateState();
         return this->_out[this->_pinMap.find(pin)->second];
     }
+}
+
+void nts::C4514::initialOutput(void)
+{
+    for (int i = 1; i < 16; i++)
+        this->_out[i] = nts::Tristate::False;
+    this->_out[0] = nts::Tristate::True;
 }
 
 void nts::C4514::resetState(void)
@@ -78,7 +86,7 @@ void nts::C4514::updateState(void)
     std::array<bool, 4> inputs = {0, 0, 0, 0};
     int binaryValue = 0;
 
-    if (strobe == nts::Tristate::False) {
+    if (strobe == nts::Tristate::False || strobe == nts::Tristate::Undefined) {
         return;
     }
     if (inhibit == nts::Tristate::True || inhibit == nts::Tristate::Undefined) {
