@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include <array>
 #include "Components/AComponent.hpp"
 
 namespace nts {
@@ -19,8 +18,8 @@ namespace nts {
         void updateState(void);
         void resetState(void);
     private:
-        std::array<nts::Tristate, 11> _out;
-        std::map<int, int> _pinMap;
+        std::vector<nts::Tristate> _out;
+        std::map<size_t, int> _pinMap;
         nts::Tristate _prevClock;
         int _prevValue;
     };
