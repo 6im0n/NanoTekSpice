@@ -53,12 +53,11 @@ nts::Tristate nts::C4514::compute(std::size_t pin)
     if (pin == 2 || pin == 3 || pin == 21 || pin == 22 || pin == 23) {
         return this->_links[pin]->compute(this->_pins[pin]);
     }
+    this->updateState();
     if (inhibit == nts::Tristate::True || inhibit == nts::Tristate::Undefined)
         return nts::Tristate::False;
-    else {
-        this->updateState();
+    else
         return this->_out[this->_pinMap.find(pin)->second];
-    }
 }
 
 void nts::C4514::initialOutput(void)
@@ -87,9 +86,6 @@ void nts::C4514::updateState(void)
     int binaryValue = 0;
 
     if (strobe == nts::Tristate::False || strobe == nts::Tristate::Undefined) {
-        return;
-    }
-    if (inhibit == nts::Tristate::True || inhibit == nts::Tristate::Undefined) {
         return;
     }
     for (int i = 0; i < 4; i++) {
