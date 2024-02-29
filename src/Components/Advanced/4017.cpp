@@ -38,7 +38,7 @@ nts::C4017::C4017(std::string name) : AComponent(16, name)
 nts::Tristate nts::C4017::compute(std::size_t pin)
 {
     this->checkIfNotLoop();
-    if (pin == 0 || pin == 16 || pin > this->_pins.size())
+    if (pin == 0 || pin == 16 || pin == 8 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
     if (pin == 14 || pin == 13 || pin == 15) {
         return this->_links[pin]->compute(this->_pins[pin]);
