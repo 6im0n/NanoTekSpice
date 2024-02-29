@@ -19,7 +19,7 @@ namespace nts {
         void resetState(void);
     private:
         std::vector<nts::Tristate> _out;
-        std::map<size_t, int> _pinMap;
+        std::map<size_t, size_t> _pinMap;
         nts::Tristate _prevClock;
         int _prevValue;
     };
