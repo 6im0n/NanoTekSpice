@@ -20,6 +20,6 @@ namespace nts {
         void resetState(void);
     private:
         std::array<nts::Tristate, 16> _out;
-        std::map<int, int> _pinMap;
+        std::map<size_t, size_t> _pinMap;
     };
 }
