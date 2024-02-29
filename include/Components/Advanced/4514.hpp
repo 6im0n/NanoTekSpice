@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <array>
 #include "Components/AComponent.hpp"
+#include <array>
 
 namespace nts {
     class C4514 : public AComponent {
