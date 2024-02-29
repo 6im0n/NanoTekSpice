@@ -49,6 +49,7 @@ _SRC 	=			Main.cpp							\
 					Components/Advanced/4008.cpp		\
 					Components/Advanced/4013.cpp		\
 					Components/Advanced/4514.cpp		\
+					Components/Advanced/4017.cpp 		\
 					Components/Advanced/4094.cpp		\
 					Components/Advanced/4512.cpp		\
 

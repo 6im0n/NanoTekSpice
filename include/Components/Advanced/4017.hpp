@@ -7,3 +7,20 @@
 
 #pragma once
 
+#include "Components/AComponent.hpp"
+
+namespace nts {
+    class C4017 : public AComponent {
+    public:
+        C4017(std::string name = "");
+        ~C4017() = default;
+        nts::Tristate compute(std::size_t pin) override;
+        void updateState(void);
+        void resetState(void);
+    private:
+        std::vector<nts::Tristate> _out;
+        std::map<size_t, size_t> _pinMap;
+        nts::Tristate _prevClock;
+        int _prevValue;
+    };
+}
