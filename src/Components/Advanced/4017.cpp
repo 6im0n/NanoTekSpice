@@ -70,7 +70,7 @@ void nts::C4017::updateState(void)
         return;
     }
     if (enable == nts::Tristate::True || enable == nts::Tristate::Undefined){
-        this->_prevClock = clock ? nts::Tristate::True : nts::Tristate::False;
+        this->_prevClock = enable == nts::Tristate::True ? nts::Tristate::False : this->_prevClock;
     }
     if (clock != this->_prevClock)
         this->_prevClock = clock;
