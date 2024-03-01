@@ -106,6 +106,7 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"4017", [](const std::string &name) { return std::make_unique<C4017>( C4017(name)); }},
         {"4512", [](const std::string &name) { return std::make_unique<C4512>( C4512(name)); }},
         {"4094", [](const std::string &name) { return std::make_unique<C4094>( C4094(name)); }},
+        {"4040", [](const std::string &name) { return std::make_unique<C4040>( C4040(name)); }},
     };
 
     if (factory.find(type) == factory.end())
