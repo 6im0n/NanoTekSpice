@@ -32,7 +32,8 @@ nts::C4017::C4017(std::string name) : AComponent(16, name)
     this->_out = std::vector<nts::Tristate>(11, nts::Tristate::Undefined);
     this->_prevClock = nts::Tristate::Undefined;
     this->resetState();
-    this->_pinMap = {{3, 0}, {2, 1}, {4, 2}, {7, 3}, {10, 4}, {1, 5}, {5, 6}, {6, 7}, {9, 8}, {11, 9}, {12, 10}};
+    this->_pinMap = {{3, 0}, {2, 1}, {4, 2}, {7, 3}, {10, 4},
+        {1, 5}, {5, 6}, {6, 7}, {9, 8}, {11, 9}, {12, 10}};
 }
 
 nts::Tristate nts::C4017::compute(std::size_t pin)
@@ -46,7 +47,7 @@ nts::Tristate nts::C4017::compute(std::size_t pin)
         this->updateState();
         return this->_out[this->_pinMap.find(pin)->second];
     }
-    return nts::Tristate::False;
+    return nts::Tristate::Undefined;
 }
 
 void nts::C4017::resetState(void)
@@ -66,11 +67,11 @@ void nts::C4017::updateState(void)
 
     if (reset == nts::Tristate::True) {
         this->resetState();
-        enable == nts::Tristate::True ? this->_prevClock = nts::Tristate::False : this->_prevClock;
         return;
     }
-    if (enable == nts::Tristate::True || enable == nts::Tristate::Undefined)
-        return;
+    if (enable == nts::Tristate::True || enable == nts::Tristate::Undefined){
+        this->_prevClock = enable == nts::Tristate::True ? nts::Tristate::False : this->_prevClock;
+    }
     if (clock != this->_prevClock)
         this->_prevClock = clock;
     else
