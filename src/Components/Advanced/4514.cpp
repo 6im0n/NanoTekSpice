@@ -88,6 +88,11 @@ void nts::C4514::updateState(void)
     if (strobe == nts::Tristate::False || strobe == nts::Tristate::Undefined) {
         return;
     }
+    if (in_a == nts::Tristate::Undefined || in_b == nts::Tristate::Undefined || in_c == nts::Tristate::Undefined || in_d == nts::Tristate::Undefined) {
+       for (int i = 0; i < 16; i++)
+            this->_out[i] = nts::Tristate::Undefined;
+        return;²
+    }
     for (int i = 0; i < 4; i++) {
         inputs[i] = (inputsArray[i] == nts::Tristate::True) ? 1 : 0;
         binaryValue += inputs[i] * (1 << i);
