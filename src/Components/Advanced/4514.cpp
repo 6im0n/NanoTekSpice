@@ -47,6 +47,7 @@ nts::C4514::C4514(std::string name) : AComponent(24, name)
 nts::Tristate nts::C4514::compute(std::size_t pin)
 {
     nts::Tristate inhibit = getLink(23);
+
     this->checkIfNotLoop();
     if (pin == 0 || pin == 24 || pin == 12 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
