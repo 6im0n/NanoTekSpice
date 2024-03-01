@@ -91,7 +91,7 @@ void nts::C4514::updateState(void)
     if (in_a == nts::Tristate::Undefined || in_b == nts::Tristate::Undefined || in_c == nts::Tristate::Undefined || in_d == nts::Tristate::Undefined) {
        for (int i = 0; i < 16; i++)
             this->_out[i] = nts::Tristate::Undefined;
-        return;²
+        return;
     }
     for (int i = 0; i < 4; i++) {
         inputs[i] = (inputsArray[i] == nts::Tristate::True) ? 1 : 0;
