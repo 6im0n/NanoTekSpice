@@ -31,8 +31,8 @@ nts::C4017::C4017(std::string name) : AComponent(16, name)
 {
     this->_out = std::vector<nts::Tristate>(11, nts::Tristate::Undefined);
     this->resetState();
-    this->_prevClock = getLink(14);
-    this->_prevEnable = getLink(13);
+    this->_prevClock = nts::Tristate::Undefined;
+    this->_prevEnable = nts::Tristate::Undefined;
     this->_prevValue = 0;
     this->_pinMap = {{3, 0}, {2, 1}, {4, 2}, {7, 3}, {10, 4},
         {1, 5}, {5, 6}, {6, 7}, {9, 8}, {11, 9}, {12, 10}};
