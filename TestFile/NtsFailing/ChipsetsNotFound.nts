@@ -1,0 +1,6 @@
+# Chipsets Not Found
+
+.links:
+in_1:1 gate:1
+in_2:1 gate:2
+out:1 gate:3

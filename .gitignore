@@ -42,3 +42,9 @@ nanotekspice
 #valgrind
 valgrind-out.txt
 vgcore.*
+
+# Tests
+*.gcda
+*.gcno
+unit_tests
+WebCoverage/
