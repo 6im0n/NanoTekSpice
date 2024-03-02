@@ -75,6 +75,7 @@ void nts::C4017::updateState(void)
     }
     if (reset == nts::Tristate::True)
         this->resetState();
+    this->_out[10] = (this->_prevValue < 5) ? nts::Tristate::True : nts::Tristate::False;
     this->_prevClock = clock;
     this->_prevEnable = enable;
 }
