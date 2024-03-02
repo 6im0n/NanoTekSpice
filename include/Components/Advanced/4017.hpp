@@ -21,6 +21,7 @@ namespace nts {
         std::vector<nts::Tristate> _out;
         std::map<size_t, size_t> _pinMap;
         nts::Tristate _prevClock;
-        int _prevValue;
+        nts::Tristate _prevEnable;
+        size_t _prevValue;
     };
 }
