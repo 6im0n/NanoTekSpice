@@ -121,10 +121,11 @@ fclean: 	clean
 
 re: 		fclean all
 
-tests_run: 	 clean $(TESTS_OBJ) $(_OBJ)
+tests_run: 	clean $(TESTS_OBJ) $(_OBJ)
 		@$(CXX) -o unit_tests $(TESTS_OBJ) $(_OBJ) $(INC) --coverage -lcriterion
 		@./unit_tests
 		@gcovr --exclude tests/
 
 web_coverage:	tests_run
+		@mkdir -p WebCoverage
 		@gcovr --exclude tests/ --html --html-details -o WebCoverage/coverage.html
