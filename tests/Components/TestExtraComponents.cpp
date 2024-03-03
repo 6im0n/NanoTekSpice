@@ -115,6 +115,22 @@ Test(DFlipFlopComponent, testSetState)
     cr_assert_eq(dflipflop->compute(1), nts::Tristate::True);
 }
 
+Test(DFlipFlopComponent, testGetLink)
+{
+    nts::IComponent *dflipflop = new nts::DFlipFlop("test");
+    nts::IComponent *clock = new nts::TrueComponent("test");
+    nts::IComponent *data = new nts::FalseComponent("test");
+    nts::IComponent *reset = new nts::FalseComponent("test");
+    nts::IComponent *set = new nts::FalseComponent("test");
+
+
+    dflipflop->setLink(1, *clock, 1);
+    dflipflop->setLink(2, *data, 1);
+    dflipflop->setLink(3, *reset, 1);
+    dflipflop->setLink(4, *set, 1);
+    cr_assert_throw(dflipflop->getLink(0), nts::Error);
+}
+
 Test(DuplicateComponent, testWrongPin)
 {
     nts::DupComponent duplicatecomp("test");
