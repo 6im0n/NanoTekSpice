@@ -44,4 +44,4 @@ valgrind-out.txt
 vgcore.*
 
 #logFile
-./log.bin
+log.bin
