@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check program compilation
-        run: make -j5
+        run: make
         timeout-minutes: 2
 
       - name: Stop if compilation failed
@@ -81,7 +81,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run tests
-        run: make fclean; make tests_run -j5
+        run: make tests_run
         timeout-minutes: 2
 
       - name: Test execution
