@@ -32,6 +32,7 @@ namespace nts {
             std::vector<std::unique_ptr<nts::IComponent>> _components;
             std::vector<std::string> _inputNames;
             std::vector<std::string> _outputNames;
+            std::vector<std::string> _loggerNames;
             std::string _circuitInfo;
     };
 }

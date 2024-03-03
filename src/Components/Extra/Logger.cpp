@@ -21,6 +21,8 @@ nts::Tristate nts::Logger::compute(std::size_t pin)
     nts::Tristate inhibit = getLink(10);
     size_t value = 0;
 
+    if (pin == 11)
+        std::cout << "Logger: " << this->getName() << std::endl; // TODO Add logics
     if (pin == 0 || pin == 10 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
     if (inhibit == nts::Tristate::True || inhibit == nts::Tristate::Undefined)

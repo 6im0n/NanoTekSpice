@@ -36,6 +36,12 @@ void nts::NanoTekSpice::getDisplayContent()
             throw nts::Error("Error: output not found");
         this->_circuitInfo += "  " + compTemp->getName() + ": " + compTemp->compute(1) + "\n";
     }
+    for (auto &logger : this->_loggerNames) {
+        compTemp = this->getComponent(logger);
+        if (compTemp == nullptr)
+            throw nts::Error("Error: logger not found");
+        compTemp->compute(11);
+    }
 }
 
 void nts::NanoTekSpice::simulate()
@@ -107,6 +113,7 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         {"4512", [](const std::string &name) { return std::make_unique<C4512>( C4512(name)); }},
         {"4094", [](const std::string &name) { return std::make_unique<C4094>( C4094(name)); }},
         {"4040", [](const std::string &name) { return std::make_unique<C4040>( C4040(name)); }},
+        {"logger", [](const std::string &name) { return std::make_unique<Logger>( Logger(name)); }},
     };
 
     if (factory.find(type) == factory.end())
@@ -115,6 +122,8 @@ std::unique_ptr<nts::IComponent> nts::NanoTekSpice::createComponent(const std::s
         this->_inputNames.push_back(name);
     if (type == "output")
         this->_outputNames.push_back(name);
+    if (type == "logger")
+        this->_loggerNames.push_back(name);
     return factory.at(type)(name);
 }
 
@@ -140,8 +149,8 @@ nts::NanoTekSpice::NanoTekSpice(nts::CircuitFile &circuitFile)
     for (auto &link : links) {
         this->setLink(link.first.first, link.first.second, link.second.first, link.second.second);
     }
-    if (this->_outputNames.empty())
-        throw nts::Error("Error: missing input or output");
+    if (this->_outputNames.empty() && this->_loggerNames.empty())
+        throw nts::Error("Error: missing output");
     this->ticks = 0;
     getDisplayContent();
     for (auto &comp : this->_components) {
