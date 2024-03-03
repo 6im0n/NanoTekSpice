@@ -17,6 +17,6 @@ namespace nts {
             nts::Tristate compute(std::size_t pin) override;
         private:
            nts::Tristate _prevClock;
-           void logToFile(nts::Tristate clock, size_t pin);
+           void logToFile(nts::Tristate clock);
     };
 }

@@ -53,13 +53,13 @@ nts::Tristate nts::Logger::compute(std::size_t pin)
         return nts::Tristate::Undefined;
     }
     if (pin == 11) {
-        logToFile(clock, pin);
+        logToFile(clock);
     }
     this->_prevClock = clock;
     return nts::Tristate::Undefined;
 }
 
-void nts::Logger::logToFile(nts::Tristate clock, size_t pin)
+void nts::Logger::logToFile(nts::Tristate clock)
 {
     std::vector<nts::Tristate> inputs =
         {getLink(1), getLink(2), getLink(3), getLink(4),
