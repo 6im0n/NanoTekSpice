@@ -657,3 +657,109 @@ Test(C4512, TestInput)
 
     cr_assert_eq(c4512->compute(11), nts::Tristate::True);
 }
+//--------------------------------- 4515 ---------------------------------
+
+Test(C4515, TestWrongPin)
+{
+    nts::C4515 C4515comp("test");
+
+    cr_assert_eq(C4515comp.compute(0), nts::Tristate::Undefined);
+}
+
+Test(C4515, TestCompute1)
+{
+    nts::IComponent *C4515 = new nts::C4515("test");
+    nts::IComponent *strobe = new nts::InputComponent("test");
+    nts::IComponent *inhibit = new nts::InputComponent("test");
+    nts::IComponent *dataA = new nts::InputComponent("test");
+    nts::IComponent *dataB = new nts::InputComponent("test");
+    nts::IComponent *dataC = new nts::InputComponent("test");
+    nts::IComponent *dataD = new nts::InputComponent("test");
+
+    C4515->setLink(1, *strobe, 1);
+    C4515->setLink(2, *dataA, 1);
+    C4515->setLink(3, *dataB, 1);
+    C4515->setLink(21, *dataC, 1);
+    C4515->setLink(22, *dataD, 1);
+    C4515->setLink(23, *inhibit, 1);
+
+    dataA->setState(nts::Tristate::False);
+    dataB->setState(nts::Tristate::False);
+    dataC->setState(nts::Tristate::False);
+    dataD->setState(nts::Tristate::False);
+    strobe->setState(nts::Tristate::True);
+    inhibit->setState(nts::Tristate::False);
+
+    cr_assert_eq(C4515->compute(11), nts::Tristate::False);
+}
+
+Test(C4515, TestDataUndefined)
+{
+    nts::IComponent *C4515 = new nts::C4515("test");
+    nts::IComponent *strobe = new nts::InputComponent("test");
+    nts::IComponent *inhibit = new nts::InputComponent("test");
+    nts::IComponent *dataA = new nts::InputComponent("test");
+    nts::IComponent *dataB = new nts::InputComponent("test");
+    nts::IComponent *dataC = new nts::InputComponent("test");
+    nts::IComponent *dataD = new nts::InputComponent("test");
+
+    C4515->setLink(1, *strobe, 1);
+    C4515->setLink(2, *dataA, 1);
+    C4515->setLink(3, *dataB, 1);
+    C4515->setLink(21, *dataC, 1);
+    C4515->setLink(22, *dataD, 1);
+    C4515->setLink(23, *inhibit, 1);
+
+    dataA->setState(nts::Tristate::Undefined);
+    dataB->setState(nts::Tristate::Undefined);
+    dataC->setState(nts::Tristate::Undefined);
+    dataD->setState(nts::Tristate::Undefined);
+    strobe->setState(nts::Tristate::True);
+    inhibit->setState(nts::Tristate::False);
+
+    cr_assert_eq(C4515->compute(11), nts::Tristate::Undefined);
+}
+
+Test(C4515, TestInputPin)
+{
+    nts::IComponent *C4515 = new nts::C4515("test");
+    nts::IComponent *dataA = new nts::InputComponent("test");
+
+    C4515->setLink(2, *dataA, 1);
+
+    dataA->setState(nts::Tristate::True);
+
+    cr_assert_eq(C4515->compute(2), nts::Tristate::True);
+}
+
+Test(C4515, TestInhibit)
+{
+    nts::IComponent *C4515 = new nts::C4515("test");
+    nts::IComponent *strobe = new nts::InputComponent("test");
+    nts::IComponent *inhibit = new nts::InputComponent("test");
+
+    C4515->setLink(1, *strobe, 1);
+    C4515->setLink(23, *inhibit, 1);
+
+
+    strobe->setState(nts::Tristate::True);
+    inhibit->setState(nts::Tristate::True);
+
+    cr_assert_eq(C4515->compute(11), nts::Tristate::True);
+}
+
+Test(C4515, TestInhibit2)
+{
+    nts::IComponent *C4515 = new nts::C4515("test");
+    nts::IComponent *strobe = new nts::InputComponent("test");
+    nts::IComponent *inhibit = new nts::InputComponent("test");
+
+    C4515->setLink(1, *strobe, 1);
+    C4515->setLink(23, *inhibit, 1);
+
+
+    strobe->setState(nts::Tristate::True);
+    inhibit->setState(nts::Tristate::Undefined);
+
+    cr_assert_eq(C4515->compute(11), nts::Tristate::True);
+}
