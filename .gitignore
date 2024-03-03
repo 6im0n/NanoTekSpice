@@ -45,3 +45,9 @@ vgcore.*
 
 #logFile
 log.bin
+
+# Tests
+*.gcda
+*.gcno
+unit_tests
+WebCoverage/
