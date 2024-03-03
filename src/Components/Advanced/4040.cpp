@@ -65,7 +65,7 @@ nts::Tristate nts::C4040::compute(std::size_t pin)
 {
     this->checkIfNotLoop();
     if (pin == 0 || pin == 8 || pin == 16 || pin > this->_pins.size())
-         return nts::Tristate::Undefined;
+        return nts::Tristate::Undefined;
     if (pin == 11 || pin == 10)
     	return this->_links[pin]->compute(this->_pins[pin]);
     else {
