@@ -31,8 +31,8 @@
     clock -9-+    +-10- inhibit
 */
 
-#include "Components/Extra/Logger.hpp"
 #include <fstream>
+#include "Components/Extra/Logger.hpp"
 
 nts::Logger::Logger(std::string name) : AComponent(10, name)
 {
@@ -41,13 +41,9 @@ nts::Logger::Logger(std::string name) : AComponent(10, name)
 
 nts::Tristate nts::Logger::compute(std::size_t pin)
 {
-    std::vector<nts::Tristate> inputs =
-        {getLink(1), getLink(2), getLink(3), getLink(4),
-        getLink(5), getLink(6), getLink(7), getLink(8)};
     nts::Tristate clock = getLink(9);
     nts::Tristate inhibit = getLink(10);
-    std::ofstream file;
-    char value = 0;
+
 
     if (pin == 0 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
@@ -57,13 +53,29 @@ nts::Tristate nts::Logger::compute(std::size_t pin)
         this->_prevClock = clock;
         return nts::Tristate::False;
     }
+    if (pin == 11) {
+        logToFile(clock, pin);
+    }
+    this->_prevClock = clock;
+    return nts::Tristate::True;
+}
+
+void nts::Logger::logToFile(nts::Tristate clock, size_t pin)
+{
+    std::vector<nts::Tristate> inputs =
+        {getLink(1), getLink(2), getLink(3), getLink(4),
+        getLink(5), getLink(6), getLink(7), getLink(8)};
+    std::ofstream file;
+    char value = 0;
+
     for (size_t i = 0; i < inputs.size(); i++) {
         if (inputs[i] == nts::Tristate::Undefined) {
             this->_prevClock = clock;
-            return nts::Tristate::Undefined;
+            return;
         }
     }
-    if (clock == nts::Tristate::True && this->_prevClock == nts::Tristate::False && pin == 11) {
+    if (clock == nts::Tristate::True && this->_prevClock
+            == nts::Tristate::False && pin == 11) {
         for (size_t i = 0; i < inputs.size(); i++) {
             value += (inputs[i] == nts::Tristate::True) ? 1 << i : 0;
         }
@@ -71,6 +83,4 @@ nts::Tristate nts::Logger::compute(std::size_t pin)
         file << value;
         file.close();
     }
-    this->_prevClock = clock;
-    return nts::Tristate::True;
 }
