@@ -34,7 +34,7 @@
 #include <fstream>
 #include "Components/Extra/Logger.hpp"
 
-nts::Logger::Logger(std::string name) : AComponent(10, name)
+nts::Logger::Logger(std::string name) : AComponent(11, name)
 {
     this->_prevClock = nts::Tristate::Undefined;
 }
@@ -46,17 +46,17 @@ nts::Tristate nts::Logger::compute(std::size_t pin)
 
     if (pin == 0 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
-    if (pin == 10 || pin == 9)
+    if (pin >= 1 && pin <= 10)
         return this->_links[pin]->compute(this->_pins[pin]);
     if (inhibit == nts::Tristate::True || inhibit == nts::Tristate::Undefined) {
         this->_prevClock = clock;
-        return nts::Tristate::False;
+        return nts::Tristate::Undefined;
     }
     if (pin == 11) {
         logToFile(clock, pin);
     }
     this->_prevClock = clock;
-    return nts::Tristate::True;
+    return nts::Tristate::Undefined;
 }
 
 void nts::Logger::logToFile(nts::Tristate clock, size_t pin)
@@ -74,7 +74,7 @@ void nts::Logger::logToFile(nts::Tristate clock, size_t pin)
         }
     }
     if (clock == nts::Tristate::True && this->_prevClock
-            == nts::Tristate::False && pin == 11) {
+            == nts::Tristate::False) {
         for (size_t i = 0; i < inputs.size(); i++) {
             value += (inputs[i] == nts::Tristate::True) ? 1 << i : 0;
         }
