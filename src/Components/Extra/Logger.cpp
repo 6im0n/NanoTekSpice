@@ -44,7 +44,6 @@ nts::Tristate nts::Logger::compute(std::size_t pin)
     nts::Tristate clock = getLink(9);
     nts::Tristate inhibit = getLink(10);
 
-
     if (pin == 0 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
     if (pin == 10 || pin == 9)
