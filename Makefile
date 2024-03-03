@@ -84,6 +84,7 @@ _TESTS_SRC	=			TestNanoTekSpice.cpp					\
 						Components/TestElementaryComponents.cpp	\
 						Components/TestExtraComponents.cpp		\
 						Components/TestGatesComponents.cpp		\
+						Components/TestAdvancedComponents.cpp	\
 
 
 
