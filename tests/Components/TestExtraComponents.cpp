@@ -288,7 +288,8 @@ Test(LoggerComponent, TestInputState2)
     nts::IComponent *input_128 = new nts::InputComponent("test");
     nts::IComponent *clock = new nts::InputComponent("test");
     nts::IComponent *inhibit = new nts::InputComponent("test");
-    std::ifstream file("./log.bin");
+    std::ifstream file;
+
     char lastChar;
 
     Logger->setLink(1, *input_1, 1);
@@ -316,6 +317,7 @@ Test(LoggerComponent, TestInputState2)
     inhibit->setState(nts::Tristate::False);
     Logger->compute(11);
 
+    file.open("./log.bin");
     file.seekg(-1, std::ios_base::end);
     file.get(lastChar);
     cr_assert_eq(lastChar, 66);
