@@ -67,7 +67,7 @@ nts::Tristate nts::C4040::compute(std::size_t pin)
     if (pin == 0 || pin == 8 || pin == 16 || pin > this->_pins.size())
         return nts::Tristate::Undefined;
     if (pin == 11 || pin == 10)
-        this->_links[pin]->compute(this->_pins[pin]);
+        return this->_links[pin]->compute(this->_pins[pin]);
     else {
         this->updateState();
         return this->_out[this->_pinMap.find(pin)->second];
