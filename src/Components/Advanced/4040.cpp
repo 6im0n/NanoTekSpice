@@ -36,40 +36,40 @@ void nts::C4040::resetState(void)
 {
     this->_prevValue = 0;
     for (int i = 0; i < 12; i++)
-        this->_out[i] = nts::Tristate::False;
+    	this->_out[i] = nts::Tristate::False;
 }
 
 void nts::C4040::updateState(void)
 {
-  nts::Tristate reset = this->getLink(11);
-  nts::Tristate clock = this->getLink(10);
+    nts::Tristate reset = this->getLink(11);
+    nts::Tristate clock = this->getLink(10);
 
-  if (reset == nts::Tristate::True) {
-    this->resetState();
+    if (reset == nts::Tristate::True) {
+        this->resetState();
+        this->_prevClock = clock;
+        return;
+    }
+    if (clock == nts::Tristate::Undefined)
+        return;
+    if (clock == nts::Tristate::False && this->_prevClock == nts::Tristate::True) {
+        this->_prevValue++;
+        if (this->_prevValue == 4096)
+            this->_prevValue = 0;
+        for (int i = 0; i < 12; i++)
+            this->_out[i] = (this->_prevValue & (1 << i)) ? nts::Tristate::True : nts::Tristate::False;
+    }
     this->_prevClock = clock;
-    return;
-  }
-  if (clock == nts::Tristate::Undefined)
-    return;
-  if (clock == nts::Tristate::False && this->_prevClock == nts::Tristate::True) {
-    this->_prevValue++;
-    if (this->_prevValue == 4096)
-      this->_prevValue = 0;
-    for (int i = 0; i < 12; i++)
-      this->_out[i] = (this->_prevValue & (1 << i)) ? nts::Tristate::True : nts::Tristate::False;
-  }
-  this->_prevClock = clock;
 }
 
 nts::Tristate nts::C4040::compute(std::size_t pin)
 {
     this->checkIfNotLoop();
     if (pin == 0 || pin == 8 || pin == 16 || pin > this->_pins.size())
-        return nts::Tristate::Undefined;
+         return nts::Tristate::Undefined;
     if (pin == 11 || pin == 10)
-        this->_links[pin]->compute(this->_pins[pin]);
+    	return this->_links[pin]->compute(this->_pins[pin]);
     else {
-        this->updateState();
+    	this->updateState();
         return this->_out[this->_pinMap.find(pin)->second];
     }
     return nts::Tristate::Undefined;
