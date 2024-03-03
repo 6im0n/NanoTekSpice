@@ -43,6 +43,9 @@ nanotekspice
 valgrind-out.txt
 vgcore.*
 
+#logFile
+log.bin
+
 # Tests
 *.gcda
 *.gcno

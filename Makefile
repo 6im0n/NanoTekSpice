@@ -45,6 +45,7 @@ _SRC 		=			Main.cpp							\
 						Components/Extra/Duplicate.cpp		\
 						Components/Extra/FullAdder.cpp		\
 						Components/Extra/DFlipFlop.cpp		\
+            			Components/Extra/Logger.cpp		    \
 						\
 						Components/Advanced/4008.cpp		\
 						Components/Advanced/4013.cpp		\
