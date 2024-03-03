@@ -86,7 +86,7 @@ jobs:
 
       - name: Test execution
         run: |
-          if [ -f tests/test.out ]; then
+          if [ -f unit_tests ]; then
             echo "::notice::Successful test execution."
           else
             echo "::warning::Test failed or not available."

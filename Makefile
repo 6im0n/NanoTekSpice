@@ -69,6 +69,10 @@ INC 		= 			-I./include
 
 FLAGS 		=			-W -Wall -Wextra -Werror -g3 --coverage
 
+TESTFLAGS 	=			-lcriterion --coverage
+
+GCOVRFLAGS 	= 			--exclude tests/
+
 CXX 		= 			g++
 
 ## Tests
@@ -85,6 +89,7 @@ _TESTS_SRC	=			TestNanoTekSpice.cpp					\
 						Components/TestElementaryComponents.cpp	\
 						Components/TestExtraComponents.cpp		\
 						Components/TestGatesComponents.cpp		\
+						Components/TestAdvancedComponents.cpp	\
 
 
 
@@ -123,10 +128,10 @@ fclean: 	clean
 re: 		fclean all
 
 tests_run: 	clean $(TESTS_OBJ) $(_OBJ)
-		@$(CXX) -o unit_tests $(TESTS_OBJ) $(_OBJ) $(INC) --coverage -lcriterion
+		@$(CXX) -o unit_tests $(TESTS_OBJ) $(_OBJ) $(INC) $(TESTFLAGS)
 		@./unit_tests
 		@gcovr --exclude tests/
 
 web_coverage:	tests_run
 		@mkdir -p WebCoverage
-		@gcovr --exclude tests/ --html --html-details -o WebCoverage/coverage.html
+		@gcovr $(GCOVRFLAGS) --html --html-details -o WebCoverage/coverage.html
