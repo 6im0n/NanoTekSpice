@@ -42,3 +42,6 @@ nanotekspice
 #valgrind
 valgrind-out.txt
 vgcore.*
+
+#logFile
+./log.bin
